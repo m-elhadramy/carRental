@@ -61,30 +61,30 @@ public class VoitureService {
     }
 
     private Car mapToEntity(Car car, VoitureDTO dto) {
-        car.setMake(dto.getMarque());
-        car.setModel(dto.getModele());
-        car.setYear(dto.getAnnee());
-        car.setLicensePlate(dto.getImmatriculation());
-        car.setColor(dto.getCouleur());
-        car.setMileage(dto.getKilometrage());
-        car.setPricePerDay(dto.getPrixParJour());
+        car.setMake(dto.getMake());
+        car.setModel(dto.getModel());
+        car.setYear(dto.getYear());
+        car.setLicensePlate(dto.getLicensePlate());
+        car.setColor(dto.getColor());
+        car.setMileage(dto.getMileage());
+        car.setPricePerDay(dto.getPricePerDay());
         car.setNotes(dto.getNotes());
 
-        if (dto.getTypeMoteurId() != null) {
-            car.setEngineType(engineTypeRepository.findById(dto.getTypeMoteurId())
-                    .orElseThrow(() -> new ResourceNotFoundException("TypeMoteur", dto.getTypeMoteurId())));
+        if (dto.getEngineTypeId() != null) {
+            car.setEngineType(engineTypeRepository.findById(dto.getEngineTypeId())
+                    .orElseThrow(() -> new ResourceNotFoundException("TypeMoteur", dto.getEngineTypeId())));
         }
         if (dto.getTransmissionId() != null) {
             car.setTransmission(transmissionRepository.findById(dto.getTransmissionId())
                     .orElseThrow(() -> new ResourceNotFoundException("Transmission", dto.getTransmissionId())));
         }
-        if (dto.getTypeCarburantId() != null) {
-            car.setFuelType(fuelTypeRepository.findById(dto.getTypeCarburantId())
-                    .orElseThrow(() -> new ResourceNotFoundException("TypeCarburant", dto.getTypeCarburantId())));
+        if (dto.getFuelTypeId() != null) {
+            car.setFuelType(fuelTypeRepository.findById(dto.getFuelTypeId())
+                    .orElseThrow(() -> new ResourceNotFoundException("TypeCarburant", dto.getFuelTypeId())));
         }
-        if (dto.getStatutId() != null) {
-            car.setStatus(carStatusRepository.findById(dto.getStatutId())
-                    .orElseThrow(() -> new ResourceNotFoundException("StatutVoiture", dto.getStatutId())));
+        if (dto.getStatusId() != null) {
+            car.setStatus(carStatusRepository.findById(dto.getStatusId())
+                    .orElseThrow(() -> new ResourceNotFoundException("StatutVoiture", dto.getStatusId())));
         }
 
         return car;
